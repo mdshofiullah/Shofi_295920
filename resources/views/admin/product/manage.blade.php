@@ -16,8 +16,11 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
+                            <th>Product Name</th>
+                            <th>Category Name</th>
+                            <th>Brand Name</th>
+                            <th>Description</th>
+                            <th>image</th>
                             <th>Status</th>
                             <th>Action</th>
 
@@ -25,19 +28,23 @@
                         </thead>
 
                         <tbody>
-                        @foreach($users as $user)
+                        @foreach($products as $product)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->status == 1 ? 'Active' : 'Inactive' }}</td>
+                            <td>{{ $product->product_name }}</td>
+                            <td>{{ $product->category_name }}</td>
+                            <td>{{ $product->brand_name }}</td>
+                            <td>{{ $product->description }}</td>
+                            <td><img src="{{asset($product->image)}}" alt="" height="100" width="100" /></td>
+                            <td>{{ $product->status == 1 ? 'Published' : 'Unpublished' }}</td>
                             <td>
-                                <a href="{{ route('user.edit', ['id'=> $user->id]) }}" class="btn btn-success btn-sm">
+                                <a href="{{ route('product.edit', ['id'=> $product->id]) }}" class="btn btn-success btn-sm">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="{{ route('user.delete', ['id'=>$user->id]) }}" class="btn btn-danger btn-sm ">
+                                <a href="{{ route('product.delete', ['id'=>$product->id]) }}" class="btn btn-danger btn-sm ">
                                     <i class="fa fa-trash"></i>
                             </td>
+
                         </tr>
                         @endforeach
                         </tbody>
